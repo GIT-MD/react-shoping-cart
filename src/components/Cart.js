@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import formatCurrency from "../util";
 import Fade from "react-reveal/Pulse";
+import { connect } from "react-redux";
+import { removeFromCart } from "../actions/cartActions";
 
-export default class Cart extends Component {
+class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,21 +14,19 @@ export default class Cart extends Component {
       showCheckout: false,
     };
   }
-
   handleInput = (e) => {
-    this.setState({ [e.target.name]: [e.target.value] });
+    this.setState({ [e.target.name]: e.target.value });
   };
   createOrder = (e) => {
     e.preventDefault();
-    const orders = {
+    const order = {
       name: this.state.name,
       email: this.state.email,
       address: this.state.address,
       cartItems: this.props.cartItems,
     };
-    this.props.createOrder(orders);
+    this.props.createOrder(order);
   };
-
   render() {
     const { cartItems } = this.props;
     return (
@@ -48,17 +48,15 @@ export default class Cart extends Component {
                       <img src={item.image} alt={item.title}></img>
                     </div>
                     <div>
-                      <div>
-                        {item.title}
-                        <div className="right">
-                          {formatCurrency(item.price)} x {item.count}{" "}
-                          <button
-                            className="button"
-                            onClick={() => this.props.removeFromCart(item)}
-                          >
-                            Remove
-                          </button>
-                        </div>
+                      <div>{item.title}</div>
+                      <div className="right">
+                        {formatCurrency(item.price)} x {item.count}{" "}
+                        <button
+                          className="button"
+                          onClick={() => this.props.removeFromCart(item)}
+                        >
+                          Remove
+                        </button>
                       </div>
                     </div>
                   </li>
@@ -77,7 +75,9 @@ export default class Cart extends Component {
                     )}
                   </div>
                   <button
-                    onClick={() => this.setState({ showCheckout: true })}
+                    onClick={() => {
+                      this.setState({ showCheckout: true });
+                    }}
                     className="button primary"
                   >
                     Proceed
@@ -133,3 +133,10 @@ export default class Cart extends Component {
     );
   }
 }
+
+export default connect(
+  (state) => ({
+    cartItems: state.cart.cartItems,
+  }),
+  { removeFromCart }
+)(Cart);
