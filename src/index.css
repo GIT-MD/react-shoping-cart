@@ -50,7 +50,7 @@ header a {
 main {
   grid-area: main;
 }
-nav {
+footer {
   grid-area: footer;
   background-color: #203040;
   color: #ffffff;
@@ -120,7 +120,6 @@ nav {
 .button.primary {
   background-color: #f0c040;
 }
-
 /* Filter */
 .filter {
   display: flex;
@@ -132,9 +131,7 @@ nav {
 .filter div {
   flex: 1;
 }
-
 /* Index.css */
-
 .cart {
   padding: 1rem;
   margin: 1rem;
@@ -143,7 +140,6 @@ nav {
 .cart-header {
   border-bottom: 0.1rem #c0c0c0 solid;
 }
-
 .cart-items {
   padding: 0;
   width: 100%;
@@ -161,18 +157,15 @@ nav {
 .cart-items li div:last-child {
   flex: 1;
 }
-
 .right {
   text-align: right;
 }
-
 .total {
   display: flex;
   justify-content: space-between;
-  width: 100%;
   align-items: center;
+  width: 100%;
 }
-
 .total > div {
   font-size: 2rem;
 }
@@ -180,9 +173,8 @@ nav {
 .total > button {
   flex: 1;
 }
-
 /* Checkout form */
-.form {
+form {
   width: 100%;
 }
 .form-container {
@@ -190,7 +182,6 @@ nav {
   padding: 0;
   list-style-type: none;
 }
-
 .form-container li {
   display: flex;
   flex-direction: column;
@@ -200,9 +191,7 @@ input {
   padding: 1rem;
   border: 0.1rem #c0c0c0 solid;
 }
-
-/* Product details */
-
+/* Product Details */
 .product-details {
   display: flex;
   flex-wrap: wrap;
@@ -226,6 +215,7 @@ input {
 }
 
 /* Order Details */
+
 .order-details {
   display: flex;
   flex-direction: column;
@@ -241,10 +231,25 @@ input {
 .order-details li div {
   padding: 10px;
 }
-.order-details .cart-items {
+.order-details .items {
   text-align: right;
-  padding: 20px;
+  padding: 0;
 }
 .success-message {
   color: green;
+}
+/* Orders */
+.orders {
+  width: 100%;
+  padding: 10px;
+}
+tbody > tr:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+td {
+  
+  padding: 5px;
+}
+th {
+  text-align: left;
 }
