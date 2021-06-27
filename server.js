@@ -46,6 +46,7 @@ app.delete("/api/products/:id", async (req, res) => {
   res.send(deletedProduct);
 });
 
+// Order 
 const Order = mongoose.model(
   "order",
   new mongoose.Schema(
